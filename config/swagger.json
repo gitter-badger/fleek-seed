@@ -1,0 +1,101 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Fleek Seed API",
+    "description": "Koa on point",
+    "version": "0.0.1"
+  },
+  "host": "127.0.0.1:3000",
+  "schemes": ["http", "https"],
+  "basePath": "/v1",
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "securityDefinitions": {
+    "apiKey":{
+      "type": "apiKey",
+      "name": "api_key",
+      "description": "Require API key for access",
+      "in": "header"
+    },
+    "bearer": {
+      "type": "apiKey",
+      "name": "authorization",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "description": "Return the web application",
+        "tags": ["application"],
+        "consumes": ["text/html"],
+        "produces": ["text/html"],
+        "responses": {
+          "200": {
+            "description": "The application is being served"
+          },
+          "default": {
+            "description": "Application could not be served for an unknown reason"
+          }
+        }
+      }
+    },
+    "/user/create": {
+      "post": {
+        "description": "Return the JSON summary of the user",
+        "tags": ["user"],
+        "security": [{ "bearer": [] }],
+        "parameters": {
+        },
+        "responses": {
+          "200": {
+            "description": "User created"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    },
+    "/user/:id": {
+      "get": {
+        "description": "Return summary of the user",
+        "tags": ["user"],
+        "security": [{ "bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "The user data was succesfully returned"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Return the JSON summary of the user",
+        "tags": ["user"],
+        "parameters": {
+
+        },
+        "responses": {
+          "200": {
+            "description": "The user data was succesfully returned"
+          },
+          "default": {
+            "description": "Unexpected error",
+            "schema": {
+              "$ref": "#/definitions/error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}
