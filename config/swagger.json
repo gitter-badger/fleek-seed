@@ -80,6 +80,7 @@
       "put": {
         "description": "Return the JSON summary of the user",
         "tags": ["user"],
+        "security": [{ "bearer": [] }],
         "parameters": {
 
         },
