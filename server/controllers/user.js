@@ -3,7 +3,6 @@ module.exports.post = function *() {
 }
 
 module.exports.get = function *() {
-  console.log('woo')
   this.body = this.method;
 }
 
