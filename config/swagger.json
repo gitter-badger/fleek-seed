@@ -11,7 +11,7 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "securityDefinitions": {
-    "apiKey":{
+    "apiKey": {
       "type": "apiKey",
       "name": "api_key",
       "description": "Require API key for access",
@@ -44,9 +44,10 @@
       "post": {
         "description": "Return the JSON summary of the user",
         "tags": ["user"],
-        "security": [{ "bearer": [] }],
-        "parameters": {
-        },
+        "security": [{
+          "bearer": []
+        }],
+        "parameters": {},
         "responses": {
           "200": {
             "description": "User created",
@@ -70,7 +71,9 @@
       "get": {
         "description": "Return summary of the user",
         "tags": ["user"],
-        "security": [{ "bearer": [] }],
+        "security": [{
+          "bearer": []
+        }],
         "responses": {
           "200": {
             "description": "The user data was succesfully returned",
@@ -92,7 +95,9 @@
       "put": {
         "description": "Return the JSON summary of the user",
         "tags": ["user"],
-        "security": [{ "bearer": [] }],
+        "security": [{
+          "bearer": []
+        }],
         "parameters": {
 
         },
@@ -117,6 +122,42 @@
     }
   },
   "definitions": {
-
+    "BaseError": {
+      "type": "object",
+      "required": [
+        "data",
+        "status",
+        "success"
+      ],
+      "properties": {
+        "success": {
+          "type": "boolean",
+          "default": false
+        },
+        "data": {
+          "type": "mixed",
+          "default": "Internal server error"
+        },
+        "status": {
+          "type": "integer",
+          "default": 500,
+          "minimum": 100,
+          "maximum": 600
+        }
+      }
+    },
+    "NotFoundError": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BaseError"
+        },
+        {
+          "properties": {
+            "status": { "default" : 404 },
+            "data": { "default" : "Not Found" }
+          }
+        }
+      ]
+    }
   }
 }
