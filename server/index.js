@@ -6,6 +6,8 @@ var routeConf = {};
 // swagger based authentication
 // routeConf.authenticate = require('./lib/authenticate.js').isAuthenticated;
 
+
+// derive the error structures from the definitions
 app.use(function *(next) {
   // TODO: replace with fleek-error
   // app.use(fleek-error(function *(err) {

@@ -35,7 +35,7 @@
             "description": "The application is being served"
           },
           "default": {
-            "description": "Application could not be served for an unknown reason"
+            "schema": { "$ref": "#/definitions/InternalError" }
           }
         }
       }
@@ -59,10 +59,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "$ref": "#/definitions/error"
-            }
+            "schema": { "$ref": "#/definitions/InternalError" }
           }
         }
       }
@@ -85,10 +82,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "$ref": "#/definitions/error"
-            }
+            "schema": { "$ref": "#/definitions/InternalError" }
           }
         }
       },
@@ -112,10 +106,7 @@
             }
           },
           "default": {
-            "description": "Unexpected error",
-            "schema": {
-              "$ref": "#/definitions/error"
-            }
+            "schema": { "$ref": "#/definitions/InternalError" }
           }
         }
       }
@@ -135,26 +126,55 @@
           "default": false
         },
         "data": {
-          "type": "mixed",
-          "default": "Internal server error"
+          "type": "mixed"
         },
         "status": {
           "type": "integer",
-          "default": 500,
           "minimum": 100,
           "maximum": 600
         }
       }
     },
+    "InternalError": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseError" },
+        {
+          "properties": {
+            "status": { "default" : 500 },
+            "data": { "default" : "Internal server error" }
+          }
+        }
+      ]
+    },
     "NotFoundError": {
       "allOf": [
-        {
-          "$ref": "#/definitions/BaseError"
-        },
+        { "$ref": "#/definitions/BaseError" },
         {
           "properties": {
             "status": { "default" : 404 },
-            "data": { "default" : "Not Found" }
+            "data": { "default" : "Not found" }
+          }
+        }
+      ]
+    },
+    "BadRequestError": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseError" },
+        {
+          "properties": {
+            "status": { "default" : 400 },
+            "data": { "default" : "Bad request" }
+          }
+        }
+      ]
+    },
+    "NotAuthorizedError": {
+      "allOf": [
+        { "$ref": "#/definitions/BaseError" },
+        {
+          "properties": {
+            "status": { "default" : 401 },
+            "data": { "default" : "Not authorized" }
           }
         }
       ]

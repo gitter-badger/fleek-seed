@@ -23,7 +23,7 @@
   "dependencies": {
     "koa": "^0.21.0",
     "lodash": "^3.9.3",
-    "fleek-router": "git+ssh://git@github.com:gohart/fleek-router.git#v0.2.4"
+    "fleek-router": "git+ssh://git@github.com:gohart/fleek-router.git#v0.2.7"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
